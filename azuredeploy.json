@@ -97,7 +97,7 @@
 			"type": "string",
 			"defaultValue": "defaultgallery",
 			"allowedValues": [
-				"defaultgallery", "marketplace"
+				"defaultgallery", "marketplace", "byoi"
 			],
 			"metadata": {
 				"description": "OpenShift OS image type. 'defaultgallery' will use the on demand RHEL image. 'marketplace' allows you to define a third party marketplace image to use."
@@ -115,6 +115,18 @@
 				"description": "Enter the appropriate publisher, offer, sku and version values for the appropriate marketplace image you want to use."
 			}
 		},
+    "imageReference": {
+      "type": "object",
+      "defaultValue": {
+			  "publisher": "RedHat",
+			  "offer": "RHEL",
+			  "sku": "7.5",
+			  "version": "latest"
+      },
+      "metadata": {
+        "description": "If you bring your own image (BYOI), add the id for your image here"
+      }
+    },
 		"storageKind": {
 			"type": "string",
 			"defaultValue": "managed",
@@ -668,12 +680,6 @@
 			}
 		},
 		"infraFrontEndIpConfigurationProperties": "[concat(parameters('routerClusterType'), 'InfraFrontEndIpConfigurationProperties')]",
-		"imageReference": {
-			"publisher": "RedHat",
-			"offer": "RHEL",
-			"sku": "7.5",
-			"version": "latest"
-		},
 		"marketplacePlan":{
 			"publisher": "[parameters('marketplaceOsImage').publisher]",
 			"product": "[parameters('marketplaceOsImage').offer]",
@@ -1867,7 +1873,7 @@
 						"value": "[variables('apiVersionCompute')]"
 					},
 					"imageReference": {
-						"value": "[variables('imageReference')]"
+						"value": "[parameters('imageReference')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"
@@ -1958,7 +1964,7 @@
 						"value": "[variables('apiVersionCompute')]"
 					},
 					"imageReference": {
-						"value": "[variables('imageReference')]"
+						"value": "[parameters('imageReference')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"
@@ -2049,7 +2055,7 @@
 						"value": "[variables('apiVersionCompute')]"
 					},
 					"imageReference": {
-						"value": "[variables('imageReference')]"
+						"value": "[parameters('imageReference')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"
@@ -2140,7 +2146,7 @@
 						"value": "[variables('apiVersionCompute')]"
 					},
 					"imageReference": {
-						"value": "[variables('imageReference')]"
+						"value": "[parameters('imageReference')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"
@@ -2236,7 +2242,7 @@
 						"value": "[variables('apiVersionCompute')]"
 					},
 					"imageReference": {
-						"value": "[variables('imageReference')]"
+						"value": "[parameters('imageReference')]"
 					},
 					"redHatTags": {
 						"value": "[variables('redHatTags')]"

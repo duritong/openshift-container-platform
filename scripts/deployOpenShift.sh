@@ -178,7 +178,7 @@ echo $(date) " - Creating Master nodes grouping"
 for (( c=0; c<$MASTERCOUNT; c++ ))
 do
     mastergroup="$mastergroup
-$MASTER-$c.${DOMAIN} openshift_node_group_name='node-config-master'"
+$MASTER-$c openshift_node_group_name='node-config-master'"
 done
 
 # Create Infra nodes grouping 
@@ -186,7 +186,7 @@ echo $(date) " - Creating Infra nodes grouping"
 for (( c=0; c<$INFRACOUNT; c++ ))
 do
     infragroup="$infragroup
-$INFRA-$c.${DOMAIN} openshift_node_group_name='node-config-infra'"
+$INFRA-$c openshift_node_group_name='node-config-infra'"
 done
 
 # Create Nodes grouping
@@ -194,7 +194,7 @@ echo $(date) " - Creating Nodes grouping"
 for (( c=0; c<$NODECOUNT; c++ ))
 do
     nodegroup="$nodegroup
-$NODE-$c.${DOMAIN} openshift_node_group_name='node-config-compute'"
+$NODE-$c openshift_node_group_name='node-config-compute'"
 done
 
 # Create CNS nodes grouping if CNS is enabled
@@ -205,7 +205,7 @@ then
     for (( c=0; c<$CNSCOUNT; c++ ))
     do
         cnsgroup="$cnsgroup
-$CNS-$c.${DOMAIN} openshift_node_group_name='node-config-compute'"
+$CNS-$c openshift_node_group_name='node-config-compute'"
     done
 fi
 

@@ -442,6 +442,7 @@ parameters:
 provisioner: kubernetes.io/glusterfs
 reclaimPolicy: Delete
 EOF
+fi
 
 # Run OpenShift Container Platform prerequisites playbook
 echo $(date) " - Running Prerequisites via Ansible Playbook"

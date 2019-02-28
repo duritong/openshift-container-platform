@@ -699,11 +699,15 @@
 		"bastionPrepScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/bastionPrep.sh')]",
 		"nodePrepScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/nodePrep.sh')]",
 		"masterPrepScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/masterPrep.sh')]",
+		"openshiftDeploymentPrepScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/prepOpenShift.sh')]",
 		"openshiftDeploymentScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/deployOpenShift.sh')]",
+		"openshiftDeploymentPostScriptUrl": "[concat(parameters('_artifactsLocation'), '/scripts/postOpenShift.sh')]",
 		"bastionPrepScriptFileName": "bastionPrep.sh",
 		"nodePrepScriptFileName": "nodePrep.sh",
 		"masterPrepScriptFileName": "masterPrep.sh",
+		"openshiftDeploymentPrepScriptFileName": "prepOpenShift.sh",
 		"openshiftDeploymentScriptFileName": "deployOpenShift.sh",
+		"openshiftDeploymentPostScriptFileName": "postOpenShift.sh",
 		"clusterNodeDeploymentTemplateUrl": "[concat(parameters('_artifactsLocation'), '/nested/galleryclusternode.json')]",
 		"clusterCnsNodeDeploymentTemplateUrl": "[concat(parameters('_artifactsLocation'), '/nested/galleryclustercnsnode.json')]",
 		"basicDeploymentTemplateUrl": "[concat(parameters('_artifactsLocation'), '/nested/gallerybasic.json')]",
@@ -2564,11 +2568,23 @@
 					"apiVersionCompute": {
 						"value": "[variables('apiVersionCompute')]"
 					},
+					"openshiftDeploymentPrepScriptUrl": {
+						"value": "[variables('openshiftDeploymentPrepScriptUrl')]"
+					},
+					"openshiftDeploymentPrepScriptFileName": {
+						"value": "[variables('openshiftDeploymentPrepScriptFileName')]"
+					},
 					"openshiftDeploymentScriptUrl": {
 						"value": "[variables('openshiftDeploymentScriptUrl')]"
 					},
 					"openshiftDeploymentScriptFileName": {
 						"value": "[variables('openshiftDeploymentScriptFileName')]"
+					},
+					"openshiftDeploymentPostScriptUrl": {
+						"value": "[variables('openshiftDeploymentPostScriptUrl')]"
+					},
+					"openshiftDeploymentPostScriptFileName": {
+						"value": "[variables('openshiftDeploymentPostScriptFileName')]"
 					},
 					"newStorageAccountRegistry": {
 						"value": "[variables('newStorageAccountRegistry')]"

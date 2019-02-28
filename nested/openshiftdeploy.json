@@ -340,7 +340,7 @@
 	"resources": [
 		{
 			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(parameters('openshiftBastionHostname'), '/deployPrepOpenShift')]",
+			"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
 			"location": "[parameters('location')]",
 			"apiVersion": "[parameters('apiVersionCompute')]",
 			"tags": {
@@ -370,7 +370,6 @@
 			"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
 			"location": "[parameters('location')]",
 			"apiVersion": "[parameters('apiVersionCompute')]",
-			"dependsOn": ["[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('openshiftBastionHostname'), 'deployPrepOpenShift')]"],
 			"tags": {
 				"displayName": "DeployOpenShift",
 					"provider": "[parameters('redHatTags').provider]",
@@ -395,10 +394,9 @@
 		},
 		{
 			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(parameters('openshiftBastionHostname'), '/deployPostOpenShift')]",
+			"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
 			"location": "[parameters('location')]",
 			"apiVersion": "[parameters('apiVersionCompute')]",
-			"dependsOn": ["[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('openshiftBastionHostname'), 'deployOpenShift')]"],
 			"tags": {
 				"displayName": "DeployPostOpenShift",
 					"provider": "[parameters('redHatTags').provider]",

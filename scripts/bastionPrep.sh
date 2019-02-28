@@ -108,7 +108,8 @@ echo $(date) " - Base package installation complete"
 # Install OpenShift utilities
 echo $(date) " - Installing OpenShift utilities"
 
-yum -y install openshift-ansible
+# exclude for https://bugzilla.redhat.com/show_bug.cgi?id=1684077
+yum -y install openshift-ansible --exclude java-1.8.0-openjdk-headless-1.8.0.201.b09-0.el7_6
 echo $(date) " - OpenShift utilities installation complete"
 
 # Installing Azure CLI

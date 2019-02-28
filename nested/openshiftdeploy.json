@@ -32,16 +32,40 @@
 				"description": "API version for compute resources"
 			}
 		},
+		"openshiftDeploymentPrepScriptUrl": {
+			"type": "string",
+			"metadata": {
+				"description": "Deployment prep script Url"
+			}
+		},
+		"openshiftDeploymentPrepScriptFileName": {
+			"type": "string",
+			"metadata": {
+				"description": "Deployment prep script file name"
+			}
+		},
 		"openshiftDeploymentScriptUrl": {
 			"type": "string",
 			"metadata": {
-				"description": "Bastion prep script Url"
+				"description": "Deployment script Url"
 			}
 		},
 		"openshiftDeploymentScriptFileName": {
 			"type": "string",
 			"metadata": {
-				"description": "Bastion prep script file name"
+				"description": "Deployment script file name"
+			}
+		},
+		"openshiftDeploymentPostScriptUrl": {
+			"type": "string",
+			"metadata": {
+				"description": "Deployment post script Url"
+			}
+		},
+		"openshiftDeploymentPostScriptFileName": {
+			"type": "string",
+			"metadata": {
+				"description": "Deployment post script file name"
 			}
 		},
 		"newStorageAccountRegistry": {

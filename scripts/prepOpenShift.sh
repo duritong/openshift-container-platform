@@ -377,6 +377,7 @@ openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra":"true"}
 
 # Setup logging
 openshift_logging_install_logging=false
+openshift_logging_es_memory_limit=8Gi
 openshift_logging_fluentd_nodeselector={"logging":"true"}
 openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
 openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra":"true"}

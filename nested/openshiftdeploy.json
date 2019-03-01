@@ -35,13 +35,13 @@
 		"openshiftDeploymentScriptUrl": {
 			"type": "string",
 			"metadata": {
-				"description": "Deployment script Url"
+				"description": "OpenShift deployment script Url"
 			}
 		},
 		"openshiftDeploymentScriptFileName": {
 			"type": "string",
 			"metadata": {
-				"description": "Deployment post script file name"
+				"description": "OpenShift deployment script file name"
 			}
 		},
 		"newStorageAccountRegistry": {
@@ -313,33 +313,32 @@
 	"variables": {
 		"singlequote": "'"
 	},
-	"resources": [
-			"type": "Microsoft.Compute/virtualMachines/extensions",
-			"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
-			"location": "[parameters('location')]",
-			"apiVersion": "[parameters('apiVersionCompute')]",
-			"tags": {
-				"displayName": "DeployOpenShift",
-					"provider": "[parameters('redHatTags').provider]",
-					"app": "[parameters('redHatTags').app]",
-					"version": "[parameters('redHatTags').version]",
-					"platform": "[parameters('redHatTags').platform]"
+	"resources": [{
+		"type": "Microsoft.Compute/virtualMachines/extensions",
+		"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
+		"location": "[parameters('location')]",
+		"apiVersion": "[parameters('apiVersionCompute')]",
+		"tags": {
+			"displayName": "DeployOpenShift",
+				"provider": "[parameters('redHatTags').provider]",
+				"app": "[parameters('redHatTags').app]",
+				"version": "[parameters('redHatTags').version]",
+				"platform": "[parameters('redHatTags').platform]"
+		},
+		"properties": {
+			"publisher": "Microsoft.Azure.Extensions",
+			"type": "CustomScript",
+			"typeHandlerVersion": "2.0",
+			"autoUpgradeMinorVersion": true,
+			"settings": {
+				"fileUris": [
+					"[parameters('openshiftDeploymentScriptUrl')]"
+				]
 			},
-			"properties": {
-				"publisher": "Microsoft.Azure.Extensions",
-				"type": "CustomScript",
-				"typeHandlerVersion": "2.0",
-				"autoUpgradeMinorVersion": true,
-				"settings": {
-					"fileUris": [
-						"[parameters('openshiftDeploymentScriptUrl')]"
-					]
-				},
-				"protectedSettings": {
-					"commandToExecute": "[concat('bash ', parameters('openshiftDeploymentScriptFileName'), ' \"', parameters('adminUsername'), '\" ', variables('singlequote'), parameters('openshiftPassword'), variables('singlequote'), ' \"', parameters('openshiftMasterHostname'), '\" \"', parameters('openshiftMasterPublicIpFqdn'), '\" \"', parameters('openshiftMasterPublicIpAddress'), '\" \"', parameters('openshiftInfraHostname'), '\" \"', parameters('openshiftNodeHostname'), '\" \"', parameters('nodeInstanceCount'), '\" \"', parameters('infraInstanceCount'), '\" \"', parameters('MasterInstanceCount'), '\" \"', parameters(parameters('subDomainChosen')), '\" \"', parameters('newStorageAccountRegistry'), '\" ', variables('singlequote'), parameters('newStorageAccountKey'), variables('singlequote'), ' \"', parameters('enableMetrics'), '\" \"', parameters('enableLogging'), '\" ', variables('singlequote'), parameters('tenantId'), variables('singlequote'), ' ', variables('singlequote'), parameters('subscriptionId'), variables('singlequote'), ' ', variables('singlequote'), parameters('aadClientId'), variables('singlequote'), ' ', variables('singlequote'), parameters('aadClientSecret'), variables('singlequote'), ' ', variables('singlequote'), parameters('resourceGroupName'), variables('singlequote'), ' ', variables('singlequote'), parameters('location'), variables('singlequote'), ' ', variables('singlequote'), parameters('enableAzure'), variables('singlequote'), ' ', variables('singlequote'), parameters('storageKind'), variables('singlequote'), ' ', variables('singlequote'), parameters('enableCNS'), variables('singlequote'), ' ', variables('singlequote'), parameters('openshiftCnsHostname'), variables('singlequote'),' ', variables('singlequote'), parameters('cnsInstanceCount'), variables('singlequote'), ' ', variables('singlequote'), parameters('virtualNetworkName'), variables('singlequote'), ' ', variables('singlequote'), parameters('nodeNetworkSecurityGroup'), variables('singlequote'), ' ', variables('singlequote'), parameters('nodeAvailabilitySet'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterClusterType'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterPrivateClusterIp'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterClusterDns'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterPublicIpName'), variables('singlequote'), ' ', variables('singlequote'), parameters('routerClusterType'), variables('singlequote'), ' ', variables('singlequote'), parameters('routerPublicIpName'), variables('singlequote'), ' ', variables('singlequote'), parameters('customHeaderImage'), variables('singlequote'), ' ', variables('singlequote'), parameters('newStorageAccountWeb'), variables('singlequote'), ' ', variables('singlequote'), parameters('routingCertType'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterCertType'), variables('singlequote'), ' ', variables('singlequote'), parameters('proxySettings'), variables('singlequote'), ' ', variables('singlequote'), parameters('httpProxyEntry'), variables('singlequote'), ' ', variables('singlequote'), parameters('httpsProxyEntry'), variables('singlequote'), ' ', variables('singlequote'), parameters('noProxyEntry'), variables('singlequote'))]"
-				}
+			"protectedSettings": {
+				"commandToExecute": "[concat('bash ', parameters('openshiftDeploymentScriptFileName'), ' \"', parameters('adminUsername'), '\" ', variables('singlequote'), parameters('openshiftPassword'), variables('singlequote'), ' \"', parameters('openshiftMasterHostname'), '\" \"', parameters('openshiftMasterPublicIpFqdn'), '\" \"', parameters('openshiftMasterPublicIpAddress'), '\" \"', parameters('openshiftInfraHostname'), '\" \"', parameters('openshiftNodeHostname'), '\" \"', parameters('nodeInstanceCount'), '\" \"', parameters('infraInstanceCount'), '\" \"', parameters('MasterInstanceCount'), '\" \"', parameters(parameters('subDomainChosen')), '\" \"', parameters('newStorageAccountRegistry'), '\" ', variables('singlequote'), parameters('newStorageAccountKey'), variables('singlequote'), ' \"', parameters('enableMetrics'), '\" \"', parameters('enableLogging'), '\" ', variables('singlequote'), parameters('tenantId'), variables('singlequote'), ' ', variables('singlequote'), parameters('subscriptionId'), variables('singlequote'), ' ', variables('singlequote'), parameters('aadClientId'), variables('singlequote'), ' ', variables('singlequote'), parameters('aadClientSecret'), variables('singlequote'), ' ', variables('singlequote'), parameters('resourceGroupName'), variables('singlequote'), ' ', variables('singlequote'), parameters('location'), variables('singlequote'), ' ', variables('singlequote'), parameters('enableAzure'), variables('singlequote'), ' ', variables('singlequote'), parameters('storageKind'), variables('singlequote'), ' ', variables('singlequote'), parameters('enableCNS'), variables('singlequote'), ' ', variables('singlequote'), parameters('openshiftCnsHostname'), variables('singlequote'),' ', variables('singlequote'), parameters('cnsInstanceCount'), variables('singlequote'), ' ', variables('singlequote'), parameters('virtualNetworkName'), variables('singlequote'), ' ', variables('singlequote'), parameters('nodeNetworkSecurityGroup'), variables('singlequote'), ' ', variables('singlequote'), parameters('nodeAvailabilitySet'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterClusterType'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterPrivateClusterIp'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterClusterDns'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterPublicIpName'), variables('singlequote'), ' ', variables('singlequote'), parameters('routerClusterType'), variables('singlequote'), ' ', variables('singlequote'), parameters('routerPublicIpName'), variables('singlequote'), ' ', variables('singlequote'), parameters('customHeaderImage'), variables('singlequote'), ' ', variables('singlequote'), parameters('newStorageAccountWeb'), variables('singlequote'), ' ', variables('singlequote'), parameters('routingCertType'), variables('singlequote'), ' ', variables('singlequote'), parameters('masterCertType'), variables('singlequote'), ' ', variables('singlequote'), parameters('proxySettings'), variables('singlequote'), ' ', variables('singlequote'), parameters('httpProxyEntry'), variables('singlequote'), ' ', variables('singlequote'), parameters('httpsProxyEntry'), variables('singlequote'), ' ', variables('singlequote'), parameters('noProxyEntry'), variables('singlequote'))]"
 			}
 		}
-	],
+	}],
 	"outputs": {}
 }

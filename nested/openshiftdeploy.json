@@ -314,6 +314,7 @@
 		"singlequote": "'"
 	},
 	"resources": [
+			"type": "Microsoft.Compute/virtualMachines/extensions",
 			"name": "[concat(parameters('openshiftBastionHostname'), '/deployOpenShift')]",
 			"location": "[parameters('location')]",
 			"apiVersion": "[parameters('apiVersionCompute')]",

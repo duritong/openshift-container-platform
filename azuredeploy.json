@@ -2883,7 +2883,7 @@
 			"properties": {
 				"mode": "Incremental",
 				"templateLink": {
-					"uri": "[variables('openshiftDeploymentTemplateUrl')]",
+					"uri": "[variables('openshiftPostDeploymentTemplateUrl')]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {

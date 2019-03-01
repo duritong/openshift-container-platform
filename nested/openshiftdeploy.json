@@ -32,19 +32,13 @@
 				"description": "API version for compute resources"
 			}
 		},
-		"openshiftDeploymentPrepScriptFileName": {
-			"type": "string",
-			"metadata": {
-				"description": "Deployment prep script file name"
-			}
-		},
 		"openshiftDeploymentScriptUrl": {
 			"type": "string",
 			"metadata": {
 				"description": "Deployment script Url"
 			}
 		},
-		"openshiftDeploymentPostScriptFileName": {
+		"openshiftDeploymentScriptFileName": {
 			"type": "string",
 			"metadata": {
 				"description": "Deployment post script file name"

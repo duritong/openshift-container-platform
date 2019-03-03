@@ -71,6 +71,8 @@ sed -i -e "s/^#pty=False/pty=False/" /etc/ansible/ansible.cfg
 sed -i -e "s/^#stdout_callback = skippy/stdout_callback = skippy/" /etc/ansible/ansible.cfg
 sed -i -e "s/^#pipelining = False/pipelining = True/" /etc/ansible/ansible.cfg
 
+sed -i -e "s/^#forks = .*/forks = 20/" /etc/ansible/ansible.cfg
+
 # echo $(date) " - Modifying sudoers"
 sed -i -e "s/Defaults    requiretty/# Defaults    requiretty/" /etc/sudoers
 sed -i -e '/Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"/aDefaults    env_keep += "PATH"' /etc/sudoers

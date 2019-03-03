@@ -78,10 +78,8 @@ sed -i -e '/Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSE
 # Create docker registry config based on Commercial Azure or Azure Government
 if [[ $CLOUD == "US" ]]
 then
-    DOCKERREGISTRYYAML=dockerregistrygov.yaml
     export CLOUDNAME="AzureUSGovernmentCloud"
 else
-    DOCKERREGISTRYYAML=dockerregistrypublic.yaml
     export CLOUDNAME="AzurePublicCloud"
 fi
 

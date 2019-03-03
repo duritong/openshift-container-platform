@@ -189,10 +189,6 @@ then
 	az network public-ip delete -g $RESOURCEGROUP -n $INFRAPIPNAME
 fi
 
-# Setting Masters to non-schedulable
-echo $(date) " - Setting Masters to non-schedulable"
-runuser -l $SUDOUSER -c "ansible-playbook -f 10 ~/openshift-container-platform-playbooks/reset-masters-non-schedulable.yaml"
-
 # Re-enabling requiretty
 echo $(date) " - Re-enabling requiretty"
 sed -i -e "s/# Defaults    requiretty/Defaults    requiretty/" /etc/sudoers

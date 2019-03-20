@@ -168,7 +168,7 @@ then
 openshift_master_cluster_public_hostname=$PRIVATEDNS
 openshift_master_cluster_public_vip=$PRIVATEIP"
 else
-	MASTERCLUSTERADDRESS="openshift_master_cluster_hostname=$MASTERPUBLICIPHOSTNAME
+	MASTERCLUSTERADDRESS="openshift_master_cluster_hostname=$(echo $MASTERPUBLICIPHOSTNAME |sed  "s/\./-int./")
 openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
 openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS"
 fi

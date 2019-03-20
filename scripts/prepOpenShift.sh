@@ -306,6 +306,7 @@ then
 $CNS-$c glusterfs_devices='[ \"${drive1}\", \"${drive2}\", \"${drive3}\" ]'"
     done
 fi
+openshift_users="openshift_master_htpasswd_users={'$(for i in `seq 1 25`; do htpasswd -b -n user$i 0p3nSh1ftuser$i | sed '/^$/d'; done | awk -F: -v ORS="', '" -v p=":" -v q="'" '{ print $1 q p " " q $2  }' | sed "s/, '\$/}/")"
 
 # Create Ansible Hosts File
 echo $(date) " - Create Ansible Hosts file"
@@ -338,7 +339,7 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 openshift_master_api_port=443
 openshift_master_console_port=443
 osm_default_node_selector='node-role.kubernetes.io/compute=true'
-openshift_disable_check=memory_availability,docker_image_availability
+#openshift_disable_check=memory_availability,docker_image_availability
 $CLOUDKIND
 $SCKIND
 $CUSTOMCSS
@@ -367,6 +368,7 @@ $MASTERCLUSTERADDRESS
 
 # Enable HTPasswdPasswordIdentityProvider
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+$openshift_users
 
 # Setup metrics
 openshift_metrics_install_metrics=false

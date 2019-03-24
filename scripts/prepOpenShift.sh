@@ -145,7 +145,7 @@ fi
 echo $(date) " - Create variable for routing certificate based on certificate type"
 if [[ $CUSTOMROUTINGCERTTYPE == "custom" ]]
 then
-	ROUTINGCERTIFICATE="openshift_hosted_router_certificate={\"certfile\": \"/tmp/routingcert.pem\", \"keyfile\": \"/tmp/routingkey.pem\"}"
+	ROUTINGCERTIFICATE="openshift_hosted_router_certificate={\"cafile\": \"/tmp/routingca.pem\", \"certfile\": \"/tmp/routingcert.pem\", \"keyfile\": \"/tmp/routingkey.pem\"}"
 else
 	ROUTINGCERTIFICATE=""
 fi

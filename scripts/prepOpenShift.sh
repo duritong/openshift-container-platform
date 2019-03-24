@@ -145,7 +145,8 @@ fi
 echo $(date) " - Create variable for routing certificate based on certificate type"
 if [[ $CUSTOMROUTINGCERTTYPE == "custom" ]]
 then
-	ROUTINGCERTIFICATE="openshift_hosted_router_certificate={\"cafile\": \"/tmp/routingca.pem\", \"certfile\": \"/tmp/routingcert.pem\", \"keyfile\": \"/tmp/routingkey.pem\"}"
+#	ROUTINGCERTIFICATE="openshift_hosted_router_certificate={\"cafile\": \"/tmp/routingca.pem\", \"certfile\": \"/tmp/routingcert.pem\", \"keyfile\": \"/tmp/routingkey.pem\"}"
+	ROUTINGCERTIFICATE="openshift_hosted_router_certificate={\"certfile\": \"/tmp/routingcert.pem\", \"keyfile\": \"/tmp/routingkey.pem\"}"
 else
 	ROUTINGCERTIFICATE=""
 fi
@@ -155,7 +156,8 @@ echo $(date) " - Create variable for master api certificate based on certificate
 if [[ $CUSTOMMASTERCERTTYPE == "custom" ]]
 then
 	MASTERCERTIFICATE="openshift_master_overwrite_named_certificates=true
-openshift_master_named_certificates=[{\"names\": [\"$MASTERPUBLICIPHOSTNAME\"], \"cafile\": \"/tmp/masterca.pem\", \"certfile\": \"/tmp/mastercert.pem\", \"keyfile\": \"/tmp/masterkey.pem\"}]"
+#openshift_master_named_certificates=[{\"names\": [\"$MASTERPUBLICIPHOSTNAME\"], \"cafile\": \"/tmp/masterca.pem\", \"certfile\": \"/tmp/mastercert.pem\", \"keyfile\": \"/tmp/masterkey.pem\"}]"
+openshift_master_named_certificates=[{\"names\": [\"$MASTERPUBLICIPHOSTNAME\"], \"certfile\": \"/tmp/mastercert.pem\", \"keyfile\": \"/tmp/masterkey.pem\"}]"
 else
 	MASTERCERTIFICATE=""
 fi

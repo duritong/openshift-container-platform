@@ -168,9 +168,15 @@ then
 openshift_master_cluster_public_hostname=$PRIVATEDNS
 openshift_master_cluster_public_vip=$PRIVATEIP"
 else
-	MASTERCLUSTERADDRESS="openshift_master_cluster_hostname=$(echo $MASTERPUBLICIPHOSTNAME |sed  "s/\./-int./")
+  if [[ $MASTERPUBLICIPHOSTNAME == *cloudapp.azure.com ]]; then
+	  MASTERCLUSTERADDRESS="openshift_master_cluster_hostname=$MASTERPUBLICIPHOSTNAME
 openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
 openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS"
+  else
+	  MASTERCLUSTERADDRESS="openshift_master_cluster_hostname=$(echo $MASTERPUBLICIPHOSTNAME |sed  "s/\./-int./")
+openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
+openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS"
+  fi
 fi
 
 # Create Master nodes grouping
